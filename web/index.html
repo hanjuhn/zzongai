@@ -1,0 +1,250 @@
+  <!DOCTYPE html>
+  <html lang="ko">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>쫑알 ZZongAI</title>
+      <link rel="icon" href="/static/asset/icon2.png" />
+      <link rel="stylesheet" href="/static/style.css" />
+
+      <script>
+        // 로컬/배포 환경에 따라 백엔드 주소 자동 설정
+        const isLocal =
+          location.hostname === "localhost" || location.protocol === "file:";
+
+        const isDeployed =
+          !isLocal &&
+          (location.hostname.includes("render.com") ||
+            location.hostname.includes("railway.app"));
+
+        window.BACKEND_BASE = isLocal
+          ? "http://localhost:8000"
+          : isDeployed
+          ? `${location.protocol}//${location.host}`
+          : "https://melodytest-production.up.railway.app";
+      </script>
+
+      <script type="module" src="/static/main.js"></script>
+    </head>
+    <body>
+      <!-- 상단 네비게이션 바 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <img src="/static/asset/logo1.svg" />
+        </div>
+        <nav class="topbar-nav">
+          <a href="#" class="nav-link active">쫑알 생성</a>
+          <a href="#" class="nav-link">쫑알 기록</a>
+        </nav>
+        <button class="google-btn" type="button">
+          <img src="/static/asset/googleLogo.svg" class="google-icon" />구글 로그인
+        </button>
+      </header>
+
+      <div class="page">
+        <main class="main">
+          <!-- 상단 안내 배너 -->
+          <section class="card banner">
+            <img src="/static/asset/logo2.svg" />
+            <p class="banner-text">
+              쫑알은 외우기 어려운 공부 내용을 텍스트로 요약해 주며, 노래로 자동
+              변환해주는 AI 학습 서비스입니다.
+            </p>
+          </section>
+
+          <!-- 2컬럼 레이아웃 -->
+          <section class="layout">
+            <!-- 왼쪽 컬럼 -->
+            <div class="layout-left">
+              <!-- 문장 입력 + 파일 업로드 카드 -->
+              <section class="card card-input">
+                <div class="card-header">
+                  <div>
+                    <h1 class="page-title">외우고 싶은 내용을 입력해 주세요</h1>
+                    <p class="page-subtitle">(최대 300자 · 또는 파일 업로드)</p>
+                  </div>
+                </div>
+
+                <div class="card-body">
+                  <!-- 텍스트 입력 -->
+                  <div class="field-group">
+                    <label for="text-input" class="field-label">문장 입력</label>
+                    <textarea
+                      id="text-input"
+                      placeholder="예: 서울은 대한민국의 수도입니다. 인구는 약 1천만 명입니다."
+                      maxlength="300"
+                    ></textarea>
+                    <div id="char-count" class="char-count">0 / 300</div>
+                  </div>
+
+                  <div class="divider">또는</div>
+
+                  <!-- 파일 업로드 -->
+                  <div class="field-group">
+                    <label for="file-input" class="field-label"
+                      >파일 업로드</label
+                    >
+                    <input
+                      id="file-input"
+                      type="file"
+                      accept="image/png,image/jpeg,image/jpg,application/pdf"
+                      multiple
+                    />
+                    <p class="file-limit">이미지: 최대 5장, PDF: 최대 1개</p>
+                    <div id="file-list" class="file-list"></div>
+                  </div>
+                  <div class="divider2"></div>
+                  <!-- 감정 태그 선택 영역 -->
+                  <div id="emotion-tags-section" class="emotion-tags-section">
+                    <div class="emotion-tags-header">
+                      <button
+                        type="button"
+                        id="emotion-tags-toggle"
+                        class="emotion-tags-toggle"
+                      >
+                        <span class="emotion-icon"></span>
+                        <span class="emotion-toggle-text">
+                          감정 태그 선택 (최대 5개) - 멜로디 생성 시 적용
+                        </span>
+                      </button>
+
+                      <!-- ✅ 버튼 밖으로 분리된 카운트 -->
+                      <span id="emotion-tags-count" class="emotion-tags-count">
+                        0 / 5개 선택됨
+                      </span>
+                    </div>
+
+                    <!-- 펼쳐지는 패널 -->
+                    <div class="emotion-tags-panel">
+                      <div class="emotion-tags-veil"></div>
+                      <div
+                        id="emotion-tags-container"
+                        class="emotion-tags-container"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <!-- 버튼 영역: 가사 생성 / 중단 / 멜로디 생성 -->
+                  <div class="options-row">
+                    <!-- 가사 생성 버튼 -->
+                    <button id="generate-btn" type="button" class="primary-btn">
+                      <span id="generate-btn-text">가사 생성</span>
+                      <span
+                        id="generate-btn-spinner"
+                        class="btn-spinner"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+
+                    <!-- 가사 생성 중단 -->
+                    <button
+                      id="cancel-btn"
+                      type="button"
+                      class="danger-btn"
+                      style="display: none"
+                    >
+                      가사 생성 중단
+                    </button>
+
+                    <!-- 멜로디 생성 -->
+                    <button
+                      id="generate-melody-btn"
+                      type="button"
+                      class="secondary-btn"
+                      style="display: none"
+                    >
+                      <span id="melody-btn-text">멜로디 생성</span>
+                      <span
+                        id="melody-btn-spinner"
+                        class="btn-spinner"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 결과 카드 -->
+              <section class="card card-result results">
+                <div class="card-header">
+                  <div class="card-title">결과</div>
+                </div>
+                <div class="card-body">
+                  <div class="field-group">
+                    <h3 class="field-title">생성된 가사</h3>
+                    <pre id="lyrics-text">-</pre>
+                  </div>
+
+                  <div class="field-group">
+                    <h3 class="field-title">쫑알 가이드</h3>
+                    <pre id="plan-text">-</pre>
+                  </div>
+
+                  <div class="field-group">
+                    <div id="study-section" class="study-section">
+                      <div class="study-header">
+                        <button
+                          type="button"
+                          id="study-toggle"
+                          class="study-toggle"
+                        >
+                          <span class="study-icon"></span>
+                          <span class="study-title-text">추출된 텍스트</span>
+                        </button>
+                      </div>
+
+                      <!-- 펼쳐지는 패널 -->
+                      <div class="study-panel">
+                        <div class="study-veil"></div>
+                        <pre id="study-text" class="study-content">-</pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- 오른쪽 컬럼: 진행 상태 카드 -->
+            <aside class="layout-right">
+              <section class="card card-status">
+                <div class="status-illustration">
+                  <img src="/static/asset/character1.svg" id="character-img" class="character1" />
+                  <div class="bubble-box">
+                    지금 쫑알을 준비하고 있어요.<br />
+                    잠시만 기다려 주세요!
+                  </div>
+                </div>
+                <div class="status-bar-row">
+                  <p class="status-title">쫑알 생성 대기 중...</p>
+                  <span id="progress-percent" class="status-percent">0%</span>
+                </div>
+                <div class="status-bar">
+                  <div class="status-bar-fill" id="progress-fill"></div>
+                </div>
+
+                <p id="status" class="status-text"></p>
+
+                <button id="save-btn" class="save-btn" disabled>쫑알 저장</button>
+                <div id="audio-output" class="audio-list"></div>
+              </section>
+            </aside>
+          </section>
+
+          <footer class="footer">
+            API 백엔드 주소: <code id="backend-url"></code>
+          </footer>
+        </main>
+      </div>
+
+      <!-- 곡 선택 모달 -->
+      <div id="download-modal" class="download-modal hidden">
+        <div class="download-modal-content">
+          <h3 class="download-modal-title">어떤 쫑알을 저장할까요?</h3>
+          <p class="download-modal-subtitle">저장할 노래를 선택해 주세요.</p>
+          <div id="download-options" class="download-options"></div>
+
+          <button type="button" class="download-modal-cancel">닫기</button>
+        </div>
+      </div>
+    </body>
+  </html>

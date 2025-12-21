@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# OS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# Dashboard logs (optional)
+dashboard_logs/*.csv
+
+# Node
+node_modules/
+
+# VSCode
+.vscode/
+
+outputs/

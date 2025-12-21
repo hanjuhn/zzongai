@@ -1,0 +1,31 @@
+name: Railway 배포
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 수동 실행 가능
+
+jobs:
+  deploy:
+    name: Railway에 배포
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+    
+    - name: Railway CLI 설치
+      run: |
+        echo "🚂 Railway CLI 설치 중..."
+        npm install -g @railway/cli || echo "⚠️ Railway CLI 설치 실패 (수동 배포 필요)"
+    
+    - name: Railway 배포
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      run: |
+        echo "🚀 Railway 배포 시작..."
+        echo "⚠️ Railway 토큰이 설정되어 있지 않으면 수동 배포가 필요합니다."
+        echo "Railway 대시보드에서 GitHub 연결을 통해 자동 배포를 설정하세요."
+        # Railway CLI를 사용한 배포는 토큰이 필요합니다
+        # railway up --service <service-name> || echo "수동 배포 필요"
+

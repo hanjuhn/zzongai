@@ -1,0 +1,1239 @@
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-1Thin.ttf") format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-2ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-3Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-4Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-5Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-6SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-7Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-8ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Freesentation";
+  src: url("fonts/Freesentation-9Black.ttf") format("truetype");
+  font-weight: 900;
+}
+
+:root {
+  font-family: "Freesentation", "Noto Sans KR", system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Freesentation", sans-serif;
+  position: relative;
+  color-scheme: light;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #ebf2ff 0%, #ffffff 100%);
+  color: #0f172a;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* 스크롤과 무관하게 화면에 고정 */
+  top: 25%;
+  left: 68%;
+  width: 60vw;
+  max-width: 1600px;
+  height: 100vh; /* 🔥 높이 강제 지정 */
+  transform: translateX(-50%);
+  background: url("/static/asset/wave.svg") no-repeat center;
+  background-size: contain; /* 비율 유지하며 크게 */
+  opacity: 0.5;
+  z-index: 0; /* 살짝 올려두고 */
+  pointer-events: none;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  position: relative;
+  z-index: 1; /* 🔥 svg보다 위로 */
+}
+
+/* 상단 네비게이션 */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(34, 36, 45, 1);
+  padding: 6px 20px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(16px);
+}
+
+.topbar-left img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  height: auto;
+  margin-top: 2px;
+}
+
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #6b7280;
+  padding-bottom: 4px;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 2px solid #4e62ff;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center; /* 수직 가운데 */
+  justify-content: center; /* 텍스트 & 아이콘 전체 가운데 */
+  gap: 8px; /* 아이콘 ↔ 텍스트 간격 */
+  border: none;
+  border-radius: 999px;
+  padding: 4px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+}
+
+.google-btn .google-icon {
+  width: 20px; /* 적당한 크기 */
+  height: auto;
+}
+
+.main {
+  margin-top: 0;
+}
+
+/* 공통 카드 스타일 */
+.card {
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 3px 15px 1px rgba(78, 98, 255, 0.25);
+  padding: 24px 28px;
+}
+
+.banner {
+  display: flex;
+  align-items: center; /* 가로 정렬 시 가운데 */
+  justify-content: center; /* 양쪽 여백 없이 가운데 정렬 */
+  gap: 16px;
+  padding: 24px 24px;
+  margin-bottom: 24px;
+  text-align: center; /* 텍스트도 중앙 */
+  flex-direction: row; /* 기본: 가로 */
+}
+
+.banner img {
+  height: 30px;
+  width: auto;
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.banner-text {
+  font-size: 17px;
+  color: #2a2d31;
+  margin: 0;
+}
+
+.banner-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6366f1;
+  margin-bottom: 4px;
+}
+
+/* 2컬럼 레이아웃 */
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.layout-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.layout-right {
+  flex: 1;
+}
+
+/* 카드 공통 구조 */
+.card-header {
+  margin-bottom: 16px;
+}
+
+.page-title {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.page-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.card-body {
+  font-size: 14px;
+}
+
+/* 입력 카드 */
+.field-group + .field-group {
+  margin-top: 16px;
+}
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 15px 20px;
+  border-radius: 25px;
+  border: 1px solid rgba(151, 125, 255, 0.3);
+  background: rgba(78, 98, 255, 0.06);
+  font-family: inherit;
+  font-size: 14px;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: 2px solid #6366f1;
+  background: #eef0ff;
+}
+
+.char-count {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: right;
+  color: #9ca3af;
+}
+
+.char-count.warning {
+  color: #f59e0b;
+}
+
+.char-count.error {
+  color: #ef4444;
+}
+
+.divider {
+  position: relative;
+  margin: 20px 0 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 양옆 라인 */
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider2 {
+  margin: 30px 0 10px;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  font-size: 13px;
+  margin-top: 4px;
+  color: #6b7280;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  transform: translateY(-1px);
+}
+
+.file-limit {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+.file-list {
+  margin-top: 10px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: #f9fafb;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.file-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-type {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-left: 8px;
+}
+
+.file-item button {
+  background: #ef4444;
+  color: #ffffff;
+  border-radius: 6px;
+  border: none;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.file-item button:hover {
+  background: #dc2626;
+}
+
+/* 🔹 감정 태그 섹션 전체 */
+.emotion-tags-section {
+  margin-top: 16px;
+}
+
+/* 아이콘+텍스트 + 카운트 한 줄로 정렬 */
+.emotion-tags-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* 상단 토글 버튼 – 버튼 티 안 나게 */
+.emotion-tags-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0; /* ✅ 패딩 제거 */
+  border: none; /* ✅ 테두리 제거 */
+  background: transparent; /* ✅ 배경 제거 */
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  box-shadow: none; /* 혹시 남아있을 수도 있는 그림자 제거 */
+  outline: none;
+}
+
+/* .emotion-tags-toggle:hover {
+  background: #eef2ff;
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.25);
+  transform: translateY(-1px);
+} */
+
+.emotion-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emotion-icon {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: url("/static/asset/down.svg") no-repeat center/contain;
+  transition: transform 0.25s ease, background-image 0.25s ease;
+}
+
+/* 펼쳐졌을 때 아이콘 변경 + 회전 */
+.emotion-tags-section.open .emotion-icon {
+  background-image: url("/static/asset/spread.svg"); /* 필요하면 경로 수정 */
+  transform: rotate(180deg);
+}
+
+.emotion-toggle-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* 카운트는 오른쪽 */
+.emotion-tags-count {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 🔹 태그 리스트 패널 (접힘/펼침 + 베일 애니메이션) */
+.emotion-tags-panel {
+  position: relative;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 6px;
+}
+
+/* 열렸을 때 패널 확장 */
+.emotion-tags-section.open .emotion-tags-panel {
+  max-height: 220px; /* 태그 수에 맞게 필요하면 조절 */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 실제 태그 버튼들 */
+.emotion-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/* 베일 (처음엔 태그 위를 덮고 있음) */
+.emotion-tags-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 열릴 때 베일이 위로 쓱 올라가면서 걷히는 느낌 */
+.emotion-tags-section.open .emotion-tags-veil {
+  transform: translateY(-100%);
+}
+
+/* 감정 태그 버튼 */
+.emotion-tag {
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.emotion-tag:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  transform: translateY(-1px);
+}
+
+.emotion-tag.selected {
+  background: #4e62ff;
+  border-color: #4e62ff;
+  color: #ffffff;
+}
+
+.emotion-tag.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.options-row {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 🔥 오른쪽 정렬 */
+  gap: 12px;
+}
+
+/* 버튼 정렬 순서: [가사 생성] [멜로디 생성] [가사 생성 중단] */
+#generate-btn {
+  order: 1; /* 왼쪽 (가사 생성) */
+}
+
+#generate-melody-btn {
+  order: 2; /* 그 오른쪽 (멜로디 생성) */
+}
+
+#cancel-btn {
+  order: 3; /* 제일 오른쪽 (가사 생성 중단) */
+}
+
+/* 🔹 추출된 텍스트 토글 섹션 */
+.study-section {
+  margin: 24px 0 16px; /* 위 24px, 좌우 0, 아래 16px */
+}
+
+.study-section.open .study-panel {
+  max-height: 320px; /* 내부 컨텐츠 260px + 패딩 여유 */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 아이콘 + 텍스트 한 줄 정렬 */
+.study-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+/* 버튼: 아이콘+텍스트만 딱 감싸도록 (감정 태그 토글처럼) */
+.study-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  box-shadow: none;
+  outline: none;
+}
+
+/* 아이콘 (감정 태그와 동일한 down/spread 사용) */
+.study-icon {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: url("/static/asset/down.svg") no-repeat center/contain;
+  transition: transform 0.25s ease, background-image 0.25s ease;
+}
+
+/* 펼쳐졌을 때 아이콘 변경 + 회전 */
+.study-section.open .study-icon {
+  background-image: url("/static/asset/spread.svg");
+  transform: rotate(180deg);
+}
+
+.study-title-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* 오른쪽 보조 텍스트 (원하면 스타일 바꿔도 됨) */
+.study-helper-text {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* 패널 애니메이션: 감정 태그 패널과 동일한 방식 */
+.study-panel {
+  position: relative;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 6px;
+}
+
+/* 열렸을 때 패널 확장 (텍스트가 좀 길 수 있으니 높이 여유 있게) */
+.study-section.open .study-panel {
+  max-height: 400px; /* 필요하면 더 키워도 됨 */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 베일: 처음엔 내용 위에 덮고 있다가 위로 쓸려 올라가는 연출 */
+.study-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.study-section.open .study-veil {
+  transform: translateY(-100%);
+}
+
+/* 패널 안의 pre는 기존 card-result pre 스타일 그대로 사용 */
+.study-content {
+  margin: 0;
+  max-height: 260px; /* 🔥 박스 최대 높이 (원하는 값으로 조절 가능) */
+  overflow-y: auto; /* 🔥 세로 스크롤 생기게 */
+  padding-right: 4px; /* 스크롤바 때문에 텍스트 붙는 거 살짝 여유 */
+}
+
+.checkbox-label {
+  font-size: 13px;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 기본 주요 버튼 */
+.primary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #4e62ff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.45);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 🔹 멜로디 생성 버튼(파랑) */
+.secondary-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  background: #1640b2;
+  color: #ffffff; /* ✨ 흰 글자 */
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
+}
+
+/* 🔹 멜로디 버튼 비활성화 (채도 낮게) */
+.secondary-btn:disabled {
+  background: #9fb4ff; /* 채도 낮춘 연한 파랑 */
+  color: #e5e7ff;
+  opacity: 1; /* 불투명하게 두고 색으로만 차이 */
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 🔹 가사 생성 중단 버튼(빨강) */
+.danger-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f97373;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.danger-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
+}
+
+.danger-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 🔹 가사 생성 중단 버튼(빨강) */
+.danger-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f97373;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.secondary-btn:hover,
+.danger-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
+}
+
+.secondary-btn:disabled,
+.danger-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* 🔹 버튼 안 로딩 스피너 */
+.btn-spinner {
+  display: none;
+  width: 14px;
+  height: 14px;
+  margin-left: 6px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-top-color: rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+
+/* 결과 카드 */
+.card-result pre {
+  background: rgba(78, 98, 255, 0.06);
+  border: 1px solid rgba(151, 125, 255, 0.3);
+  color: #383838;
+  padding: 12px 14px;
+  border-radius: 18px;
+  font-family: inherit;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.card-title {
+  margin-top: 0; /* h2 때 있던 여백 제거 */
+  margin-bottom: 25px;
+  font-size: 20px; /* h2 스타일링 유지 */
+  font-weight: 700;
+}
+
+.field-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.audio-list audio {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* 우측 상태 카드 */
+.card-status {
+  padding-top: 28px;
+  padding-bottom: 24px;
+}
+
+.status-illustration {
+  height: 310px; /* 필요하면 조절 */
+  display: flex;
+  flex-direction: column; /* 세로로 쌓이게 */
+  align-items: center; /* 가로 가운데 */
+  justify-content: center; /* 전체를 세로 가운데 */
+}
+
+.status-illustration .character1 {
+  height: 200px;
+  width: auto;
+  margin-bottom: -20px; /* 캐릭터와 말풍선 사이 간격 */
+  margin-left: 9px;
+}
+
+.status-illustration .bubble-box {
+  width: 220px; /* 말풍선 크기에 맞게 조절 */
+  height: 120px;
+  background: url("/static/asset/bubble.png") no-repeat center/contain;
+  display: flex;
+  align-items: center; /* 세로 가운데 */
+  justify-content: center; /* 가로 가운데 */
+  text-align: center; /* 여러 줄 중앙 정렬 */
+  font-size: 12px;
+  line-height: 1.4;
+  color: #2a2d31;
+  padding-top: 13px;
+}
+
+.status-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.status-bar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.status-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: #6366f1;
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+.status-text {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.status-helper {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: -10px;
+}
+
+.card-status .audio-list {
+  margin-top: 16px;
+}
+
+/* 오디오 결과 버튼 스타일 */
+.audio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.audio-btn {
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #e5e7ff; /* 연한 보라 */
+  color: #9ca3af; /* 회색 텍스트 */
+  cursor: not-allowed; /* 비활성 커서 */
+}
+
+/* 실제 오디오가 생겼을 때 */
+.audio-btn.active {
+  background: #4e62ff;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
+}
+
+.audio-btn.active:hover {
+  transform: translateY(-1px);
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef2ff;
+  margin-bottom: 10px;
+}
+
+.audio-play-btn {
+  border: none;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background: #4e62ff;
+  flex-shrink: 0;
+
+  display: flex; /* 🔥 아이콘 가운데 정렬 */
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* 버튼 안에 들어가는 SVG 이미지 크기 제어 */
+.audio-play-btn img {
+  width: 16px;
+  height: 16px;
+  pointer-events: none; /* 클릭 이벤트 버튼에만 가도록 */
+}
+
+.audio-progress {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: #d4d4ff;
+}
+
+.audio-progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #4e62ff;
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+.audio-progress::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #4e62ff;
+  cursor: pointer;
+}
+
+.audio-time {
+  font-size: 12px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+/* 오디오 한 묶음 (라벨 + 플레이어) */
+.audio-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* 라벨 ↔ 플레이어 간 간격 */
+}
+
+/* 라벨 줄 */
+.audio-header {
+  display: flex;
+  align-items: center;
+}
+
+/* "노래 1", "노래 2" 라벨 */
+.audio-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 40px;
+  color: #383838;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-bar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4px;
+}
+
+.status-percent {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4e62ff;
+  margin: 0 0 8px;
+}
+
+.save-btn {
+  width: 100%;
+  margin-top: 16px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  background: #eef2ff;
+  color: #93959f;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.save-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* 저장 버튼 활성화 상태 */
+.save-btn.active {
+  background: #4e62ff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.save-btn.active:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 15px rgba(78, 98, 255, 0.45);
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 32px;
+  font-weight: 300;
+}
+
+code {
+  font-family: inherit;
+}
+
+/* 곡 선택 모달 */
+.download-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 처음엔 숨김 */
+.download-modal.hidden {
+  display: none;
+}
+
+/* 배경 어둡게 */
+.download-modal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55); /* 어두운 반투명 */
+}
+
+/* 실제 박스 */
+.download-modal-content {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 22px 24px 18px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.4);
+  min-width: 260px;
+  max-width: 320px;
+  text-align: center;
+}
+
+.download-modal-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.download-modal-subtitle {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.download-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.download-option-btn {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  background: #4e62ff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.download-option-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(78, 98, 255, 0.45);
+}
+
+/* 닫기 버튼 */
+.download-modal-cancel {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 0;
+  font-size: 13px;
+  font-weight: 500;
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+/* 반응형 */
+@media (max-width: 960px) {
+  .layout {
+    flex-direction: column;
+  }
+  .layout-right {
+    width: 100%;
+  }
+  .banner {
+    flex-direction: column; /* 가로 → 세로 */
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* 🔹 로딩 스피너 애니메이션 */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes swayRotate1 {
+  0% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  100% {
+    transform: rotate(4deg);
+  }
+}
+
+.character1 {
+  animation: swayRotate1 2s ease-in-out infinite;
+  transform-origin: bottom center; /* 아래 중심 고정!! */
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translateY(-6px) scale(1.03) rotate(-4deg);
+  } /* 위로 점프 */
+  50% {
+    transform: translateY(0) scale(0.97) rotate(0deg);
+  } /* 착지 순간 찌그러짐 */
+  70% {
+    transform: translateY(-6px) scale(1.03) rotate(4deg);
+  } /* 여운 */
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.character2 {
+  animation: jump 1.9s ease-in-out infinite;
+  transform-origin: bottom center;
+}
