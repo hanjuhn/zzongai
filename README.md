@@ -31,7 +31,7 @@
 
 마지막 에이전트까지 거친 결과물은 Suno AI를 통해 최종 멜로디가 적용되어 생성됩니다.
 
-<img src="https://github.com/user-attachments/assets/fb70809c-6257-4196-818c-486bd5a4d466" width="700">
+<img src="https://github.com/user-attachments/assets/fb70809c-6257-4196-818c-486bd5a4d466">
 
 ---
 
@@ -39,14 +39,14 @@
 
 동요는 단순하고 명료한 선율 및 가사, 쉬운 운율과 형식으로 구성되어 있어 학습 가사 생성에 최적화되어 있습니다. 한국어 동요 165곡에 대해 음절과 각 동요의 느낌을 LLM으로 생성한 데이터를 Vector DB로 변환하여 구축하였고 사용자가 선택한 감정 태그와 쿼리를 보고 관련 내용을 정확하게 추출해 올 수 있도록 하였습니다.
 
-<img src="https://github.com/user-attachments/assets/c07b4135-68de-4bd7-941a-de30dc4fffa6" width="700">
+<img src="https://github.com/user-attachments/assets/c07b4135-68de-4bd7-941a-de30dc4fffa6">
 
 ---
 
 ## 📁 Key Directories and Files | 주요 디렉토리 및 파일
 
 - `.github/workflows/`: GitHub Actions 기반 자동화 워크플로 및 CI 설정 파일
-- `dashboard_logs/`: 대시보드 및 로그 관련 코드
+- `dashboard_logs/`: 사용자 로그 수집 및 대시보드 관련 코드
 - `data/`: 서비스에서 사용하는 Vector DB
 - `src/`: 핵심 로직과 백엔드 처리 코드
 - `web/`: 웹 인터페이스 및 프론트엔드 관련 코드
