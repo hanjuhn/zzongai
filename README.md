@@ -59,4 +59,4 @@
 https://github.com/user-attachments/assets/772b30d2-b627-40d4-974e-3c3a74a70c43
 
 ### 2. 생성된 노래
-[음원 파일 듣기](https://github.com/user-attachments/files/24316193/zzongai_._.mp3)
+[음원 파일 듣기 (클릭해 주세요)](https://github.com/user-attachments/files/24316193/zzongai_._.mp3)
